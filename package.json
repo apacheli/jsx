@@ -1,9 +1,12 @@
 {
     "name": "@apacheli/jsx",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "main": "./jsx-runtime.js",
     "files": [
         "./jsx-dev-runtime.js",
         "./jsx-runtime.js"
-    ]
+    ],
+    "devDependencies": {
+        "preact-render-to-string": "^6.6.6"
+    }
 }

@@ -1,12 +1,14 @@
+const escapeHTML = globalThis.Bun.escapeHTML;
 const isArray = globalThis.Array.isArray;
 
-const Element = Symbol.for("react.element");
+// const Element = Symbol.for("react.element");
 const Fragment = Symbol.for("react.fragment");
 
 const jsx = (type, props) => {
     return {
         type,
         props,
+        // __proto__: null, // https://github.com/preactjs/preact-render-to-string/blob/main/src/index.js#L299
         // $$typeof: Element,
     };
 };
@@ -43,7 +45,10 @@ const render = (element) => {
 
                             default: {
                                 const value = element.props[prop];
-                                attributes += ` ${prop}${typeof value === "boolean" ? "" : `="${value}"`}`;
+                                if (value === null || value === false) {
+                                    continue;
+                                }
+                                attributes += ` ${prop}${value === true ? "" : `="${escapeHTML(`${value}`)}"`}`;
                                 break;
                             }
                         }
@@ -63,7 +68,7 @@ const render = (element) => {
                         case "source":
                         case "track":
                         case "wbr": {
-                            return `<${element.type}${attributes}/>`;
+                            return `<${element.type}${attributes}>`;
                         }
 
                         default: {
@@ -84,7 +89,7 @@ const render = (element) => {
         }
 
         case "string": {
-            return Bun.escapeHTML(element);
+            return escapeHTML(element);
         }
 
         default: {

@@ -18,4 +18,22 @@ $ bun bench.js
 
 At least **2.12x** faster.
 
-It's probably faster than `react-dom/server`, but their code validator is annoying to debug.
+It's probably faster than `react-dom/server`, but their code validator is too annoying to debug.
+
+## How to Use
+
+Install using Bun:
+
+```sh
+$ bun install https://github.com/apacheli/jsx
+```
+
+Add to `tsconfig.json`:
+
+```json
+{
+    "compilerOptions": {
+        "jsxImportSource": "@apacheli/jsx"
+    }
+}
+```

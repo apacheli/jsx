@@ -42,16 +42,26 @@ const render = (element) => {
                             case "children": {
                                 continue;
                             }
+                        }
+                        const value = element.props[prop];
+                        if (value === null || value === false) {
+                            continue;
+                        }
+                        // React compatibility because their code is weird
+                        let name = prop;
+                        switch (name) {
+                            case "className": {
+                                name = "class";
+                                break;
+                            }
 
-                            default: {
-                                const value = element.props[prop];
-                                if (value === null || value === false) {
-                                    continue;
-                                }
-                                attributes += ` ${prop}${value === true ? "" : `="${escapeHTML(`${value}`)}"`}`;
+                            case "htmlFor": {
+                                name = "for";
                                 break;
                             }
                         }
+                        attributes += ` ${name}${value === true ? "" : `="${escapeHTML(`${value}`)}"`}`;
+                        break;
                     }
                     // https://developer.mozilla.org/en-US/docs/Glossary/Void_element
                     switch (element.type) {

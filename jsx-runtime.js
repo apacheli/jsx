@@ -61,7 +61,6 @@ const render = (element) => {
                             }
                         }
                         attributes += ` ${name}${value === true ? "" : `="${escapeHTML(`${value}`)}"`}`;
-                        break;
                     }
                     // https://developer.mozilla.org/en-US/docs/Glossary/Void_element
                     switch (element.type) {

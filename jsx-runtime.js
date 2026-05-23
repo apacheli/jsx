@@ -44,7 +44,7 @@ const render = (element) => {
                             }
                         }
                         const value = element.props[prop];
-                        if (value === null || value === false) {
+                        if (value === undefined || value === null || value === false) {
                             continue;
                         }
                         // React compatibility because their code is weird
@@ -97,12 +97,8 @@ const render = (element) => {
             }
         }
 
-        case "string": {
-            return escapeHTML(element);
-        }
-
         default: {
-            return `${element}`;
+            return escapeHTML(`${element}`);
         }
     }
 };

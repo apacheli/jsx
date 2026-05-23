@@ -1,6 +1,6 @@
 {
     "name": "@apacheli/jsx",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "main": "./jsx-runtime.js",
     "files": [
         "./jsx-dev-runtime.js",

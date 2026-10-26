@@ -77,7 +77,10 @@ const render = (element) => {
                         case "source":
                         case "track":
                         case "wbr": {
-                            return `<${element.type}${attributes}>`;
+                            // Allow edge cases for void elements
+                            if (element.props.children === undefined) {
+                                return `<${element.type}${attributes}>`;
+                            }
                         }
 
                         default: {
